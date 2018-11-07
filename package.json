@@ -1,0 +1,33 @@
+{
+  "name": "agile-monitor",
+  "version": "1.0.0",
+  "description": "A monitoring expressjs web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lolpez/agile-monitor.git"
+  },
+  "keywords": [
+    "expressjs",
+    "chartjs"
+  ],
+  "author": "lolpez",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/lolpez/agile-monitor/issues"
+  },
+  "homepage": "https://github.com/lolpez/agile-monitor#readme",
+  "dependencies": {
+    "chart.js": "^2.7.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
+  }
+}
