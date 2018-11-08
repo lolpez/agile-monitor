@@ -8,10 +8,18 @@ router.get('/', function (req, res, next) {
 	res.render('index',
 		{
 			title: 'Agile Automation Monitor',
-			dataSets: {
-				automator1: getRandomDataSet(10),
-				automator2: getRandomDataSet(10)
-			}
+			automators: [
+				{
+					name: 'Automator 1',
+					color: 'rgb(54, 162, 235)',
+					data: getRandomData(10)
+				},
+				{
+					name: 'Automator 2',
+					color: 'rgb(255, 99, 132)',
+					data: getRandomData(10)
+				}
+			]
 		});
 });
 
@@ -20,10 +28,10 @@ function newDateString(days) {
 }
 
 function getRandomNumber(){
-	return Math.floor(Math.random() * -10) + 10;
+	return Math.floor(Math.random() * 11);
 }
 
-function getRandomDataSet(dataNumbers){
+function getRandomData(dataNumbers){
 	var dataset=[];
 	for (var i = 0; i < dataNumbers; i++){
 		dataset.push({

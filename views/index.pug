@@ -4,7 +4,7 @@ block content
 	.chart-container
 		canvas#canvas
 block scripts
-	script var dataSets = !{JSON.stringify(dataSets).replace(/<\//g, '<\\/')}
+	script var automators = !{JSON.stringify(automators).replace(/<\//g, '<\\/')}
 	script.
 		var timeFormat = 'MM/DD/YYYY';
 
@@ -17,29 +17,30 @@ block scripts
 		}
 
 		var color = Chart.helpers.color;
+		var datasets = [];
+		automators.forEach(function(automator) {
+			datasets.push(
+				{
+					label: automator.name,
+					backgroundColor: color(automator.color).alpha(0.5).rgbString(),
+					borderColor: automator.color,
+					fill: false,
+					data: automator.data
+				}
+			);
+		});		
 		var config = {
 			type: 'line',
 			data: {
-				datasets: [
-					{
-						label: 'Automator 1',
-						backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
-						borderColor: window.chartColors.green,
-						fill: false,
-						data: dataSets.automator1
-					},
-					{
-						label: 'Automator 2',
-						backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-						borderColor: window.chartColors.blue,
-						fill: false,
-						data: dataSets.automator2
-					}
-				]
+				datasets: datasets
 			},
 			options: {
 				title: {
-					text: 'Chart.js Time Scale'
+					text: 'Agile Automation Monitor'
+				},
+				tooltips: {
+					mode: 'point',
+					insersect: 'false'
 				},
 				scales: {
 					xAxes: [{
