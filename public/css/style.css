@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 2.5vh "Lucida Grande", Helvetica, Arial, sans-serif;
+	min-height: 100%;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.app-header{
+	height: 5%;
+}
+
+.app-body{
+	height: 95%;
+}
+
+.app-title{
+	padding: 1vh;
+}
+
+.chart-container {
+	position: relative;
+	margin: auto;
+	height: 80vh;
+	width: 80vw;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }

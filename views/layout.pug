@@ -2,10 +2,14 @@ doctype html
 html
 	head
 		title= title
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		link(rel='stylesheet', href='/css/style.css')
 	body
-		block content
-		script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js")
+		.app-header
+			.app-title=title
+		.app-body
+			block content
+		script(src="/plugins/momentjs/moment.min.js")
 		script(src="/js/utils.js")
 		script(src="/plugins/chartjs/chart.min.js")
 		block scripts

@@ -1,18 +1,12 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to #{title}
-	div(style="width:75%;")
-	canvas#canvas
-	button#randomizeData Randomize Data
-	button#addDataset Add Dataset
-	button#removeDataset Remove Dataset
-	button#addData Add Data
-	button#removeData Remove Data
+	.chart-container
+		canvas#canvas
 block scripts
+	script var dataSets = !{JSON.stringify(dataSets).replace(/<\//g, '<\\/')}
 	script.
-		var timeFormat = 'MM/DD/YYYY HH:mm';
+		var timeFormat = 'MM/DD/YYYY';
 
 		function newDate(days) {
 			return moment().add(days, 'd').toDate();
@@ -26,53 +20,20 @@ block scripts
 		var config = {
 			type: 'line',
 			data: {
-				labels: [ // Date Objects
-					newDate(0),
-					newDate(1),
-					newDate(2),
-					newDate(3),
-					newDate(4),
-					newDate(5),
-					newDate(6)
-				],
 				datasets: [
 					{
 						label: 'Automator 1',
 						backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
 						borderColor: window.chartColors.green,
 						fill: false,
-						data: [{
-							x: moment().add(0, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}, {
-							x: moment().add(10, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}, {
-							x: moment().add(20, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}, {
-							x: moment().add(30, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}],
+						data: dataSets.automator1
 					},
 					{
 						label: 'Automator 2',
 						backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
 						borderColor: window.chartColors.blue,
 						fill: false,
-						data: [{
-							x: moment().add(0, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}, {
-							x: moment().add(10, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}, {
-							x: moment().add(20, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}, {
-							x: moment().add(30, 'd').format(timeFormat),
-							y: randomScalingFactor()
-						}],
+						data: dataSets.automator2
 					}
 				]
 			},
@@ -84,9 +45,12 @@ block scripts
 					xAxes: [{
 						type: 'time',
 						time: {
-							format: timeFormat,
-							round: 'day',
-							tooltipFormat: 'll HH:mm'
+							unit: 'day',
+							unitStepSize: 1,
+							displayFormats: {
+								'day': 'MMM DD'
+							},
+							tooltipFormat: 'MMMM DD YYYY'
 						},
 						scaleLabel: {
 							display: true,
@@ -96,7 +60,7 @@ block scripts
 					yAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'value'
+							labelString: 'points'
 						}
 					}]
 				},
@@ -104,12 +68,11 @@ block scripts
 		};
 
 		window.onload = function() {
-			var ctx = document.getElementById('canvas').getContext('2d');
+			var ctx = document.getElementById('canvas');
 			window.myLine = new Chart(ctx, config);
-
 		};
 
-		document.getElementById('randomizeData').addEventListener('click', function() {
+		/*document.getElementById('randomizeData').addEventListener('click', function() {
 			config.data.datasets.forEach(function(dataset) {
 				dataset.data.forEach(function(dataObj, j) {
 					if (typeof dataObj === 'object') {
@@ -149,7 +112,7 @@ block scripts
 				for (var index = 0; index < config.data.datasets.length; ++index) {
 					if (typeof config.data.datasets[index].data[0] === 'object') {
 						config.data.datasets[index].data.push({
-							x: newDate(config.data.datasets[index].data.length),
+							x: newDateString(config.data.datasets[index].data.length), 
 							y: randomScalingFactor(),
 						});
 					} else {
@@ -174,5 +137,5 @@ block scripts
 			});
 
 			window.myLine.update();
-		});
+		});*/
 		
