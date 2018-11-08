@@ -2,7 +2,7 @@ extends layout
 
 block content
 	.chart-container
-		canvas#canvas
+		canvas#agile-graph
 block scripts
 	script var automators = !{JSON.stringify(automators).replace(/<\//g, '<\\/')}
 	script.
@@ -28,7 +28,7 @@ block scripts
 					data: automator.data
 				}
 			);
-		});		
+		});
 		var config = {
 			type: 'line',
 			data: {
@@ -69,7 +69,7 @@ block scripts
 		};
 
 		window.onload = function() {
-			var ctx = document.getElementById('canvas');
+			var ctx = document.getElementById('agile-graph');
 			window.myLine = new Chart(ctx, config);
 		};
 
@@ -139,4 +139,3 @@ block scripts
 
 			window.myLine.update();
 		});*/
-		
