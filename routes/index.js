@@ -20,7 +20,7 @@ function newDateString(days) {
 }
 
 function getRandomNumber(){
-	return Math.floor(Math.random() * -10) - 10;
+	return Math.floor(Math.random() * -10) + 10;
 }
 
 function getRandomDataSet(dataNumbers){
