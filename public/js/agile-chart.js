@@ -51,6 +51,7 @@ function AgileChart(canvasElement, automators) {
     };
     this.canvasElement = canvasElement;
     this.config = config;
+    this.chart = null;
     this.redraw();
 }
 
@@ -62,12 +63,9 @@ AgileChart.prototype.update = function() {
     this.chart.update();
 }
 
-AgileChart.prototype.addRandomData = function() {
+AgileChart.prototype.addData = function(point) {
     this.config.data.datasets.map(dataset => {
-        dataset.data.push({
-            x: "11/19/2018",
-            y: 10
-        })
+        dataset.data.push(point)
     });
     this.update();
 }

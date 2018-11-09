@@ -7,5 +7,9 @@ block scripts
 	script.
 		(function() {
 			var agileChart = new AgileChart(document.getElementById('agile-graph'),	!{JSON.stringify(automators).replace(/<\//g, '<\\/')})
-			agileChart.addRandomData();
+			var i = 19;			
+			agileChart.addData({
+				x: `11/${i}/2018`,
+				y: i
+			})
 		})();
