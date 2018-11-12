@@ -36,4 +36,19 @@ app.use(function (err, req, res, next) {
 	res.render('error');
 });
 
+/*var fs = require('fs');
+var dir = './gg';
+var data = "New File \r\nContents";
+if (!fs.existsSync(dir)){
+	fs.mkdirSync(dir);
+}
+
+for (var i = 0; i < 10 ; i++){
+	fs.writeFile(`${dir}/hello${i}.txt`, data, function(err, data){
+		if (err) console.log(err);
+	});
+}
+
+console.log("Successfully Written to File.");*/
+
 module.exports = app;
